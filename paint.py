@@ -33,10 +33,10 @@ def line2(x0, y0, x1, y1, img, color):
 
 def line3(x0, y0, x1, y1, img, color):
     draw = ImageDraw.Draw(img)
-    x0 = int(x0)
-    y0 = int(y0)
-    x1 = int(x1)
-    y1 = int(y1)
+    x0 = round(x0)
+    y0 = round(y0)
+    x1 = round(x1)
+    y1 = round(y1)
 
     steep = abs(x0 - x1) < abs(y0 - y1)
     if abs(x0 - x1) < abs(y0 - y1):
@@ -60,10 +60,10 @@ def line3(x0, y0, x1, y1, img, color):
 def line_bresenhema(x0, y0, x1, y1, img, color):
     draw = ImageDraw.Draw(img)
 
-    x0 = int(x0)
-    y0 = int(y0)
-    x1 = int(x1)
-    y1 = int(y1)
+    x0 = round(x0)
+    y0 = round(y0)
+    x1 = round(x1)
+    y1 = round(y1)
 
     if (x0==x1 and y0==y1):
         return
