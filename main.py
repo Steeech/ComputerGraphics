@@ -3,6 +3,8 @@ from PIL import Image
 from random import *
 import paint
 import math
+import my_parser
+import model
 
 
 def create_matrix(element, h, w):
@@ -31,7 +33,8 @@ def draw(func, color, img_name):
         a = 2 * math.pi * i / 13
         x1 = 100 + 95 * math.cos(a)
         y1 = 100 + 95 * math.sin(a)
-        func(x0, y0, x1, y1, image, color, img_name)
+        func(x0, y0, x1, y1, image, color)
+    image.save(img_name, "PNG")
 
 
 # h = int(input())
@@ -59,3 +62,12 @@ draw(paint.line, (255, 0, 0), "new5.png")
 draw(paint.line2, (255, 0, 0), "new6.png")
 draw(paint.line3, (255, 0, 0), "new7.png")
 draw(paint.line_bresenhema, (255, 0, 0), "new8.png")
+
+image = Image.new("RGB", (1000, 1000), (0, 0, 0))
+mod = my_parser.parse()
+mod.paint_vertexes(image, (255, 255, 255))
+image.save("new9.png", "PNG")
+
+image = Image.new("RGB", (1000, 1000), (0, 0, 0))
+mod.paint_polygons(image, (255, 255, 255))
+image.save("new10.png", "PNG")

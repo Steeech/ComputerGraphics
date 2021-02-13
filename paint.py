@@ -1,7 +1,10 @@
 from PIL import ImageDraw
 
+def point(x, y, img, color):
+    draw = ImageDraw.Draw(img)
+    draw.point([x,y], color)
 
-def line(x0, y0, x1, y1, img, color, img_name):
+def line(x0, y0, x1, y1, img, color):
     draw = ImageDraw.Draw(img)
     x0 = int(x0)
     y0 = int(y0)
@@ -12,10 +15,10 @@ def line(x0, y0, x1, y1, img, color, img_name):
         x = x0 * (1 - t) + x1 * t
         y = y0 * (1 - t) + y1 * t
         draw.point([x, y], color)
-    img.save(img_name, "PNG")
 
 
-def line2(x0, y0, x1, y1, img, color, img_name):
+
+def line2(x0, y0, x1, y1, img, color):
     draw = ImageDraw.Draw(img)
     x0 = int(x0)
     y0 = int(y0)
@@ -25,10 +28,10 @@ def line2(x0, y0, x1, y1, img, color, img_name):
         t = (x - x0) / (x1 - x0)
         y = y0 * (1 - t) + y1 * t
         draw.point([x, y], color)
-    img.save(img_name, "PNG")
 
 
-def line3(x0, y0, x1, y1, img, color, img_name):
+
+def line3(x0, y0, x1, y1, img, color):
     draw = ImageDraw.Draw(img)
     x0 = int(x0)
     y0 = int(y0)
@@ -51,15 +54,19 @@ def line3(x0, y0, x1, y1, img, color, img_name):
             draw.point([y, x], color)
         else:
             draw.point([x, y], color)
-    img.save(img_name, "PNG")
 
 
-def line_bresenhema(x0, y0, x1, y1, img, color, img_name):
+
+def line_bresenhema(x0, y0, x1, y1, img, color):
     draw = ImageDraw.Draw(img)
+
     x0 = int(x0)
     y0 = int(y0)
     x1 = int(x1)
     y1 = int(y1)
+
+    if (x0==x1 and y0==y1):
+        return
 
     steep = abs(x0 - x1) < abs(y0 - y1)
     if abs(x0 - x1) < abs(y0 - y1):
@@ -72,6 +79,7 @@ def line_bresenhema(x0, y0, x1, y1, img, color, img_name):
 
     dx = x1 - x0
     dy = y1 - y0
+
     derror = abs(dy / dx)
     error = 0
     y = y0
@@ -85,4 +93,4 @@ def line_bresenhema(x0, y0, x1, y1, img, color, img_name):
         if error > 0.5:
             y += 1 if y1 > y0 else -1
             error -= 1
-    img.save(img_name, "PNG")
+
