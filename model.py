@@ -23,8 +23,8 @@ class Model:
         x = self.vertexes[i][0]
         y = self.vertexes[i][1]
         z = self.vertexes[i][2]
-        k = 40000
-        r = 5000
+        k = 4000
+        r = 500
         paint.point(x * k + r, y * -k + r, img, color)
 
     def paint_vertexes(self, img, color):
@@ -36,8 +36,8 @@ class Model:
             v1 = polygon[0]
             v2 = polygon[1]
             v3 = polygon[2]
-            k = 40000
-            r = 5000
+            k = 4000
+            r = 500
             paint.line_bresenhema(v1[0] * k + r, v1[1] * -k + r, v2[0] * k + r, v2[1] * -k + r, img, color)
             paint.line_bresenhema(v1[0] * k + r, v1[1] * -k + r, v3[0] * k + r, v3[1] * -k + r, img, color)
             paint.line_bresenhema(v3[0] * k + r, v3[1] * -k + r, v2[0] * k + r, v2[1] * -k + r, img, color)

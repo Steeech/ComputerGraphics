@@ -63,11 +63,11 @@ draw(paint.line2, (255, 0, 0), "test/new6.png")
 draw(paint.line3, (255, 0, 0), "test/new7.png")
 draw(paint.line_bresenhema, (255, 0, 0), "test/new8.png")
 
-image = Image.new("RGB", (10000, 10000), (0, 0, 0))
+image = Image.new("RGB", (1000, 1000), (0, 0, 0))
 mod = my_parser.parse()
 mod.paint_vertexes(image, (255, 255, 255))
 image.save("test/new9.png", "PNG")
 
-image = Image.new("RGB", (10000, 10000), (0, 0, 0))
+image = Image.new("RGB", (1000, 1000), (0, 0, 0))
 mod.paint_polygons(image, (255, 255, 255))
 image.save("test/new10.png", "PNG")
