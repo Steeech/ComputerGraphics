@@ -46,21 +46,19 @@ class Model:
             paint.line_bresenhema(v1[0] * k + r, v1[1] * -k + r, v3[0] * k + r, v3[1] * -k + r, img, color)
             paint.line_bresenhema(v3[0] * k + r, v3[1] * -k + r, v2[0] * k + r, v2[1] * -k + r, img, color)
 
-    def calculate_baricentric_koord(self, polygon, x, y):
-        v0 = polygon[0]
-        v1 = polygon[1]
-        v2 = polygon[2]
-        baricentric_koord = [0] * 3
 
-        baricentric_koord[0] = ((v1[0] - v2[0]) * (y - v2[1]) - (v1[1] - v2[1]) * (x - v2[0])) / (
-                (v1[0] - v2[0]) * (v0[1] - v2[1]) - (v1[1] - v2[1]) * (v0[0] - v2[0]))
-        baricentric_koord[1] = ((v2[0] - v0[0]) * (y - v0[1]) - (v2[1] - v0[1]) * (x - v0[0])) / (
-                (v2[0] - v0[0]) * (v1[1] - v0[1]) - (v2[1] - v0[1]) * (v1[0] - v0[0]))
-        baricentric_koord[2] = ((v0[0] - v1[0]) * (y - v1[1]) - (v0[1] - v1[1]) * (x - v1[0])) / (
-                (v0[0] - v1[0]) * (v2[1] - v1[1]) - (v0[1] - v1[1]) * (v2[0] - v1[0]))
+    def calculate_baricentric_koord(self, x0, y0, x1, y1, x2, y2, x, y):
+        baricentric_koord = [0] * 3
+        baricentric_koord[0] = ((x1 - x2) * (y - y2) - (y1 - y2) * (x - x2)) / (
+                (x1 - x2) * (y0 - y2) - (y1 - y2) * (x0 - x2))
+        baricentric_koord[1] = ((x2 - x0) * (y - y0) - (y2 - y0) * (x - x0)) / (
+                (x2 - x0) * (y1 - y0) - (y2 - y0) * (x1 - x0))
+        baricentric_koord[2] = ((x0 - x1) * (y - y1) - (y0 - y1) * (x - x1)) / (
+                (x0 - x1) * (y2 - y1) - (y0 - y1) * (x2 - x1))
 
         if round(sum(baricentric_koord)) != 1:
-            print(baricentric_koord)
+            print(*baricentric_koord)
+
         return baricentric_koord
 
     def paint_polygon(self, polygon, img, color):
@@ -69,23 +67,30 @@ class Model:
         v1 = polygon[1]
         v2 = polygon[2]
 
-        k = 400
-        r = 50
+        k = 4000
+        r = 500
 
-        xmin = max(min(v0[0], v1[0], v2[0]), 0)
-        ymin = max(min(v0[1], v1[1], v2[1]), 0)
-        xmax = max(v0[0], v1[0], v2[0], 0)
-        ymax = max(v0[1], v1[1], v2[1], 0)
+        x0 = v0[0] * k + r
+        y0 = v0[1] * -k + r
+        x1 = v1[0] * k + r
+        y1 = v1[1] * -k + r
+        x2 = v2[0] * k + r
+        y2 = v2[1] * -k + r
+
+
+
+        xmin = max(min(x0, x1, x2), 0)
+        ymin = max(min(y0, y1, y2), 0)
+        xmax = max(x0, x1, x2)
+        ymax = max(y0, y1, y2)
 
         for x in range(int(xmin), int(xmax) + 1):
             for y in range(int(ymin), int(ymax) + 1):
-                print(x, y)
-                b0, b1, b2 = self.calculate_baricentric_koord(polygon, x, y)
-                print(b0, b1, b2)
+                b0, b1, b2 = self.calculate_baricentric_koord(x0, y0, x1, y1, x2, y2, x, y)
                 if (b0 > 0) and (b1 > 0) and (b2 > 0):
-                    draw.point([x * k + r, y * -k + r], color)
+                    draw.point([x, y], color)
 
     def paint_fill_polygons(self, img):
         for polygon in self.polygons:
-            color = (0, 255, 255)
+            color = (randint(0, 255), randint(0, 255), randint(0, 255))
             self.paint_polygon(polygon, img, color)

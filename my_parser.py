@@ -7,7 +7,7 @@ def handler(s):
 
 
 def parse():
-    fin = open("Test1.obj", "r")
+    fin = open("Test.obj", "r")
     mod = model.Model()
 
     for s in fin:

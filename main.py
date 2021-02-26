@@ -72,6 +72,10 @@ mod = my_parser.parse()
 # mod.paint_polygons(image, (255, 255, 255))
 # image.save("test/new10.png", "PNG")
 
-image = Image.new("RGB", (100, 100), (0, 0, 0))
+image = Image.new("RGB", (1000, 1000), (0, 0, 0))
 mod.paint_fill_polygons(image)
 image.save("test/new11.png", "PNG")
+
+image = Image.new("RGB", (1000, 1000), (0, 0, 0))
+mod.paint_polygons(image, (255, 255, 255))
+image.save("test/new12.png", "PNG")
