@@ -74,8 +74,5 @@ mod = my_parser.parse()
 
 image = Image.new("RGB", (1000, 1000), (0, 0, 0))
 mod.paint_fill_polygons(image)
-image.save("test/new11.png", "PNG")
+image.save("test_laba2/new1.png", "PNG")
 
-image = Image.new("RGB", (1000, 1000), (0, 0, 0))
-mod.paint_polygons(image, (255, 255, 255))
-image.save("test/new12.png", "PNG")
