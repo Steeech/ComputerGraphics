@@ -43,31 +43,35 @@ def draw(func, color, img_name):
 h = 200
 w = 200
 
-matrix = create_matrix(0, h, w)
-create_image(matrix, 'test/new.png')
-
-matrix = create_matrix(255, h, w)
-create_image(matrix, 'test/new1.png')
-
-matrix = create_matrix((255, 0, 0), h, w)
-create_image(matrix, 'test/new2.png')
-
-matrix = create_random_matrix(h, w)
-create_image(matrix, 'test/new3.png')
-
-matrix = create_schema_matrix(h, w)
-create_image(matrix, 'test/new4.png')
-
-draw(paint.line, (255, 0, 0), "test/new5.png")
-draw(paint.line2, (255, 0, 0), "test/new6.png")
-draw(paint.line3, (255, 0, 0), "test/new7.png")
-draw(paint.line_bresenhema, (255, 0, 0), "test/new8.png")
-
-image = Image.new("RGB", (1000, 1000), (0, 0, 0))
+# matrix = create_matrix(0, h, w)
+# create_image(matrix, 'test/new.png')
+#
+# matrix = create_matrix(255, h, w)
+# create_image(matrix, 'test/new1.png')
+#
+# matrix = create_matrix((255, 0, 0), h, w)
+# create_image(matrix, 'test/new2.png')
+#
+# matrix = create_random_matrix(h, w)
+# create_image(matrix, 'test/new3.png')
+#
+# matrix = create_schema_matrix(h, w)
+# create_image(matrix, 'test/new4.png')
+#
+# draw(paint.line, (255, 0, 0), "test/new5.png")
+# draw(paint.line2, (255, 0, 0), "test/new6.png")
+# draw(paint.line3, (255, 0, 0), "test/new7.png")
+# draw(paint.line_bresenhema, (255, 0, 0), "test/new8.png")
+#
 mod = my_parser.parse()
-mod.paint_vertexes(image, (255, 255, 255))
-image.save("test/new9.png", "PNG")
+# image = Image.new("RGB", (1000, 1000), (0, 0, 0))
+# mod.paint_vertexes(image, (255, 255, 255))
+# image.save("test/new9.png", "PNG")
+#
+# image = Image.new("RGB", (1000, 1000), (0, 0, 0))
+# mod.paint_polygons(image, (255, 255, 255))
+# image.save("test/new10.png", "PNG")
 
-image = Image.new("RGB", (1000, 1000), (0, 0, 0))
-mod.paint_polygons(image, (255, 255, 255))
-image.save("test/new10.png", "PNG")
+image = Image.new("RGB", (100, 100), (0, 0, 0))
+mod.paint_fill_polygons(image)
+image.save("test/new11.png", "PNG")
