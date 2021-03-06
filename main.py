@@ -50,10 +50,10 @@ w = 200
 # create_image(matrix, 'test/Полигоны без проверки нормали.png')
 #
 # matrix = create_matrix((255, 0, 0), h, w)
-# create_image(matrix, 'test/Полигоны с проверкой нормали 2.png')
+# create_image(matrix, 'test/Полигоны с проверкой нормали.png')
 #
 # matrix = create_random_matrix(h, w)
-# create_image(matrix, 'test/Полигоны c проверкой нормали.png')
+# create_image(matrix, 'test/Полигоны c проверкой нормали 2.png')
 #
 # matrix = create_schema_matrix(h, w)
 # create_image(matrix, 'test/Полигоны без проверки нормали 2.png')
