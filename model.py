@@ -12,6 +12,11 @@ class Model:
     textures = []
     normals = []
     polygons = []
+    z_buffer = []
+
+    def init_z_Buffer(self, n , m):
+        self.z_buffer = np.array([[10**9 for i in range(m)] for j in range(n)])
+        print(len(self.z_buffer))
 
     def add_vertex(self, xyz):
         self.vertexes.append(xyz)
@@ -88,7 +93,10 @@ class Model:
             for y in range(int(ymin), int(ymax) + 1):
                 b0, b1, b2 = self.calculate_baricentric_koord(x0, y0, x1, y1, x2, y2, x, y)
                 if (b0 > 0) and (b1 > 0) and (b2 > 0):
-                    draw.point([x, y], color)
+                    z = b0 * v0[2]+b1*v1[2]+b2*v2[2]
+                    if z < self.z_buffer[x][y]:
+                        draw.point([x, y], color)
+                        self.z_buffer[x][y] = z
 
     def paint_fill_polygons(self, img):
         for polygon in self.polygons:

@@ -47,16 +47,16 @@ w = 200
 # create_image(matrix, 'test/new.png')
 #
 # matrix = create_matrix(255, h, w)
-# create_image(matrix, 'test/Полигоны без проверки нормали.png')
+# create_image(matrix, 'test/new1.png')
 #
 # matrix = create_matrix((255, 0, 0), h, w)
-# create_image(matrix, 'test/Полигоны с проверкой нормали.png')
+# create_image(matrix, 'test/new2.png')
 #
 # matrix = create_random_matrix(h, w)
-# create_image(matrix, 'test/Полигоны c проверкой нормали 2.png')
+# create_image(matrix, 'test/new3.png')
 #
 # matrix = create_schema_matrix(h, w)
-# create_image(matrix, 'test/Полигоны без проверки нормали 2.png')
+# create_image(matrix, 'test/new4.png')
 #
 # draw(paint.line, (255, 0, 0), "test/new5.png")
 # draw(paint.line2, (255, 0, 0), "test/new6.png")
@@ -72,7 +72,8 @@ mod = my_parser.parse()
 # mod.paint_polygons(image, (255, 255, 255))
 # image.save("test/new10.png", "PNG")
 
-image = Image.new("RGB", (1000, 1000), (0, 0, 0))
+image = Image.new("RGB", (1000, 600), (0, 0, 0))
+mod.init_z_Buffer(1000, 600)
 mod.paint_fill_polygons(image)
 image.save("test_laba2/image_name.png", "PNG")
 
