@@ -16,7 +16,6 @@ class Model:
 
     def init_z_Buffer(self, n , m):
         self.z_buffer = np.array([[10**9 for i in range(m)] for j in range(n)])
-        print(len(self.z_buffer))
 
     def add_vertex(self, xyz):
         self.vertexes.append(xyz)
