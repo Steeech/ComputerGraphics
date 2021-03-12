@@ -14,8 +14,8 @@ class Model:
     polygons = []
     z_buffer = []
 
-    def init_z_Buffer(self, n , m):
-        self.z_buffer = np.array([[10**9 for i in range(m)] for j in range(n)])
+    def init_z_Buffer(self, n, m):
+        self.z_buffer = np.array([[-10 ** 9 for i in range(m)] for j in range(n)])
 
     def add_vertex(self, xyz):
         self.vertexes.append(xyz)
@@ -92,8 +92,9 @@ class Model:
             for y in range(int(ymin), int(ymax) + 1):
                 b0, b1, b2 = self.calculate_baricentric_koord(x0, y0, x1, y1, x2, y2, x, y)
                 if (b0 > 0) and (b1 > 0) and (b2 > 0):
-                    z = b0 * v0[2]+b1*v1[2]+b2*v2[2]
-                    if z < self.z_buffer[x][y]:
+                    # draw.point([x, y], color)
+                    z = b0 * v0[2] + b1 * v1[2] + b2 * v2[2]
+                    if z > self.z_buffer[x][y]:
                         draw.point([x, y], color)
                         self.z_buffer[x][y] = z
 
@@ -104,7 +105,6 @@ class Model:
             if (cos < 0):
                 color = (int(255 * abs(cos)), int(255 * abs(cos)), int(255 * abs(cos)))
                 self.paint_polygon(polygon, img, color)
-
 
     def calculate_normal(self, x0, y0, z0, x1, y1, z1, x2, y2, z2):
         return np.cross([x1 - x0, y1 - y0, z1 - z0], [x1 - x2, y1 - y2, z1 - z2])
@@ -118,4 +118,4 @@ class Model:
 
         n = self.calculate_normal(v0[0], v0[1], v0[2], v1[0], v1[1], v1[2], v2[0], v2[1], v2[2])
 
-        return np.dot(n, l)/(np.linalg.norm(n)*np.linalg.norm(l))
+        return np.dot(n, l) / (np.linalg.norm(n) * np.linalg.norm(l))

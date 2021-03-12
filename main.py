@@ -75,5 +75,5 @@ mod = my_parser.parse()
 image = Image.new("RGB", (1000, 600), (0, 0, 0))
 mod.init_z_Buffer(1000, 600)
 mod.paint_fill_polygons(image)
-image.save("test_laba2/image_name.png", "PNG")
+image.save("test_laba2/z-buffer.png", "PNG")
 
