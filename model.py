@@ -103,7 +103,7 @@ class Model:
             # color = (randint(0, 255), randint(0, 255), randint(0, 255))
             cos = self.check_polygon(polygon)
             if (cos < 0):
-                color = (int(255 * abs(cos) * 10**6), int(255 * abs(cos)* 10**6), int(255 * abs(cos)* 10**6))
+                color = (int(255 * abs(cos)), int(255 * abs(cos)), int(255 * abs(cos)))
                 self.paint_polygon(polygon, img, color)
 
 
@@ -119,4 +119,4 @@ class Model:
 
         n = self.calculate_normal(v0[0], v0[1], v0[2], v1[0], v1[1], v1[2], v2[0], v2[1], v2[2])
 
-        return np.dot(n, l)
+        return np.dot(n, l)/(np.linalg.norm(n)*np.linalg.norm(l))
