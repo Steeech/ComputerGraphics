@@ -2,8 +2,7 @@ import model
 
 
 def handler(s):
-    sarr = s.split("/")
-    return int(sarr[0])
+    return [int(x) for x in s.split("/")]
 
 
 def parse():
